@@ -42,3 +42,31 @@ async function run() {
       res.send(result);
     });
 
+    app.get('/services/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = {_id : new ObjectId(id)}
+      const result = await collection.findOne(query)
+      res.send(result);
+    });
+
+
+    console.log('Connected to MongoDB!');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+  } finally {
+    // No need for empty `finally` block
+  }
+}
+run().catch(console.error);
+
+app.get('/', (req, res) => {
+  res.send('Tools is running on the server side');
+});
+
+app.listen(port, () => {
+  console.log(`Tools server is running on the local server:${port}`);
+});
+
+
+
+
