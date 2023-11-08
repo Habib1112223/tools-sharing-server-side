@@ -36,3 +36,9 @@ async function run() {
       console.log(result)
     });
 
+    app.get('/services', async (req, res) => {
+      const query = {};
+      const result = await collection.find(query).toArray();
+      res.send(result);
+    });
+
