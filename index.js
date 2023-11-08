@@ -22,3 +22,10 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
+
+
+async function run() {
+  try {
+    await client.connect(); // Connect to the MongoDB server
+
+    const collection = client.db('toolsdb').collection('services');
