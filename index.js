@@ -29,3 +29,10 @@ async function run() {
     await client.connect(); // Connect to the MongoDB server
 
     const collection = client.db('toolsdb').collection('services');
+    app.post('/services', async (req, res) => {
+      const newProduct = req.body;
+      const result = await collection.insertOne(newProduct);
+      res.send(result);
+      console.log(result)
+    });
+
