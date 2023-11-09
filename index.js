@@ -26,9 +26,10 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    await client.connect(); // Connect to the MongoDB server
+// Connect to the MongoDB server
 
     const collection = client.db('toolsdb').collection('services');
+    // const bookingCollection = client.db('toolsdb').collection('booking');
     app.post('/services', async (req, res) => {
       const newProduct = req.body;
       const result = await collection.insertOne(newProduct);
@@ -49,6 +50,10 @@ async function run() {
       res.send(result);
     });
 
+    
+    // app.post('/booking',async (req,res) =>{
+    //   const booking = res.body;
+    // })
 
     console.log('Connected to MongoDB!');
   } catch (error) {
